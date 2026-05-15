@@ -2108,12 +2108,14 @@
       })
       .then(function (res) {
         if (res.ok) { showSuccess(); }
-        else { return res.text().then(function(t){ throw new Error(res.status + ' ' + t); }); }
+        else { return res.text().then(function(t){ throw new Error('HTTP ' + res.status + ': ' + t); }); }
       })
       .catch(function (err) {
         console.error('[RD Station] Erro:', err);
         btnEl.disabled    = false;
         btnEl.textContent = 'Quero apoiar o programa';
+        // mostra o erro técnico para diagnóstico — remover depois
+        errorEl.textContent = '[DEBUG] ' + (err && err.message ? err.message : String(err));
         errorEl.style.display = 'block';
       });
     });
