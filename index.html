@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Creators de Impacto</title>
+  <title>Criadores de Impacto</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Caveat+Brush&family=Kalam:wght@700&display=swap" rel="stylesheet">
@@ -1173,6 +1173,36 @@
       gap: 12px;
     }
 
+    /* ---------------- HEART LOGO OVERLAY ---------------- */
+    .heart-logo-overlay {
+      position: absolute;
+      z-index: 3;
+      width: 52%;
+      left: 50%;
+      top: 56%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      opacity: 0.92;
+      filter: drop-shadow(0 2px 12px rgba(0,0,0,0.18));
+    }
+
+    /* ---------------- HEARTBEAT ANIMATION ---------------- */
+    @keyframes heartbeat {
+      0%   { transform: scale(1)    rotate(-0.4deg); }
+      10%  { transform: scale(1.13) rotate(0deg); }
+      20%  { transform: scale(0.96) rotate(-0.2deg); }
+      32%  { transform: scale(1.10) rotate(0.2deg); }
+      45%  { transform: scale(1)    rotate(-0.4deg); }
+      100% { transform: scale(1)    rotate(-0.4deg); }
+    }
+    .hero-art:hover img.heart-img {
+      animation: heartbeat 0.75s ease-in-out infinite !important;
+      cursor: pointer;
+    }
+    .hero-art:hover .heart-logo-overlay {
+      animation: none;
+    }
+
     /* ---------------- ICONS (inline SVG helpers via .icon) ---------------- */
     .icn {
       width: 1em; height: 1em; display: inline-block;
@@ -1331,10 +1361,10 @@
 
   <!-- NAV -->
   <nav>
-    <a href="#" class="nav-logo" aria-label="Creators de Impacto">
+    <a href="#" class="nav-logo" aria-label="Criadores de Impacto">
       <span class="logo-mark">
         <span class="stack">
-          <span class="lm-top">Creators</span>
+          <span class="lm-top">Criadores</span>
           <span class="lm-bot">Impacto</span>
         </span>
         <span class="lm-de">de</span>
@@ -1364,7 +1394,8 @@
         <div class="ring r2" aria-hidden="true"></div>
         <div class="ring" aria-hidden="true"></div>
         <div class="glow" aria-hidden="true"></div>
-        <img src="assets/heart-laptop.png" alt="Coração de musgo e flores com MacBook exibindo o logo Creators de Impacto" class="heart-img" />
+        <img src="assets/heart-laptop.png" alt="Coração de musgo e flores com MacBook exibindo o logo Criadores de Impacto" class="heart-img" />
+        <img src="assets/logo-criadores.svg" alt="Criadores de Impacto" class="heart-logo-overlay" aria-hidden="true" />
         <div class="petals" aria-hidden="true"></div>
       </div>
       <div class="hero-side right">
@@ -1719,7 +1750,7 @@
       <div class="footer-brand">
         <a href="#" class="logo-mark on-dark">
           <span class="stack">
-            <span class="lm-top">Creators</span>
+            <span class="lm-top">Criadores</span>
             <span class="lm-bot">Impacto</span>
           </span>
           <span class="lm-de">de</span>
@@ -1752,7 +1783,7 @@
       </div>
     </div>
     <div class="footer-bottom">
-      <span>© 2026 Creators de Impacto — Draft × Impact Hub</span>
+      <span>© 2026 Criadores de Impacto — Draft × Impact Hub</span>
       <span>Uma aliança para impulsionar o ativismo digital.</span>
     </div>
   </footer>
