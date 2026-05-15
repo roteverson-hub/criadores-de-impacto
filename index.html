@@ -1173,28 +1173,6 @@
       gap: 12px;
     }
 
-    /* ---------------- HEART SCREEN OVERLAY ---------------- */
-    .heart-screen {
-      position: absolute;
-      z-index: 3;
-      width: 50%;
-      left: 50%;
-      top: 57%;
-      transform: translate(-50%, -50%);
-      pointer-events: none;
-      background: #111110;
-      border-radius: 3px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 7% 6%;
-      box-shadow: 0 4px 24px rgba(0,0,0,0.35);
-    }
-    .heart-screen img {
-      width: 100%;
-      display: block;
-    }
-
     /* ---------------- HEARTBEAT ANIMATION ---------------- */
     @keyframes heartbeat {
       0%   { transform: scale(1)    rotate(-0.4deg); }
@@ -1208,6 +1186,62 @@
       animation: heartbeat 1.5s ease-in-out infinite !important;
       cursor: pointer;
     }
+
+    /* Fix: Hero Creator text (accent-bold) is black on dark background */
+    .transform-block h2.section-title .accent-bold { color: var(--accent); }
+
+    /* ---------------- MENTORS TEXT ---------------- */
+    .mentors-text {
+      margin-top: 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      max-width: 800px;
+      border-top: 1px solid var(--line);
+      padding-top: 40px;
+    }
+    .mentors-text p {
+      font-size: 18px;
+      line-height: 1.65;
+      color: var(--ink-soft);
+      padding-left: 0;
+    }
+
+    /* ---------------- CONTACT FORM ---------------- */
+    .contact-form {
+      margin-top: 60px;
+      max-width: 640px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .form-field {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .form-field label {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+    }
+    .form-field input {
+      background: #fff;
+      border: 1.5px solid var(--line);
+      border-radius: 12px;
+      padding: 16px 20px;
+      font-family: 'Archivo', sans-serif;
+      font-size: 16px;
+      color: var(--ink);
+      outline: none;
+      transition: border-color 0.2s ease;
+      width: 100%;
+    }
+    .form-field input::placeholder { color: var(--ink-faint); }
+    .form-field input:focus { border-color: var(--ink); }
+    .contact-form .cta-pill { align-self: flex-start; margin-top: 8px; font-size: 14px; padding: 14px 28px; }
 
     /* ---------------- ICONS (inline SVG helpers via .icon) ---------------- */
     .icn {
@@ -1401,9 +1435,6 @@
         <div class="ring" aria-hidden="true"></div>
         <div class="glow" aria-hidden="true"></div>
         <img src="assets/heart-laptop.png" alt="Coração de musgo e flores com MacBook exibindo o logo Criadores de Impacto" class="heart-img" />
-        <div class="heart-screen" aria-hidden="true">
-          <img src="assets/logo-criadores.svg" alt="" />
-        </div>
         <div class="petals" aria-hidden="true"></div>
       </div>
       <div class="hero-side right">
@@ -1413,50 +1444,6 @@
     <div class="hero-cta-row">
       <a href="#programa" class="cta-pill">Conheça o programa</a>
       <a href="#investimento" class="cta-pill outline">Quero apoiar</a>
-    </div>
-  </section>
-
-  <!-- NÚMEROS -->
-  <section class="numbers-block" data-screen-label="02 Números">
-    <div class="numbers-inner">
-      <div class="numbers-header">
-        <div>
-          <span class="pill-label">Em números</span>
-          <h2>Seis programas. Sessenta países. Uma rede de impacto.</h2>
-        </div>
-        <p class="section-lede" style="margin: 0; max-width: 420px;">
-          Construído sobre a inteligência editorial do Draft e a rede global do Impact Hub.
-        </p>
-      </div>
-      <div class="numbers-grid">
-        <div class="stat-cell featured">
-          <div>
-            <div class="stat-num">6</div>
-            <div class="stat-label">Programas realizados</div>
-          </div>
-          <img src="assets/six-flowers.png" alt="" class="six-deco" aria-hidden="true" />
-        </div>
-        <div class="stat-cell">
-          <div class="stat-num">25</div>
-          <div class="stat-label">Times acelerados</div>
-        </div>
-        <div class="stat-cell">
-          <div class="stat-num">70</div>
-          <div class="stat-label">Indivíduos formados</div>
-        </div>
-        <div class="stat-cell">
-          <div class="stat-num">290+</div>
-          <div class="stat-label">Peças publicadas</div>
-        </div>
-        <div class="stat-cell">
-          <div class="stat-num">4M+</div>
-          <div class="stat-label">Alcance de influenciadores</div>
-        </div>
-        <div class="stat-cell">
-          <div class="stat-num">60+</div>
-          <div class="stat-label">Países — Impact Hub</div>
-        </div>
-      </div>
     </div>
   </section>
 
@@ -1515,7 +1502,7 @@
         <div class="step">
           <div class="dot">01</div>
           <h3>Chamada &amp; Seleção</h3>
-          <p>30 vozes com potencial de liderança, unindo a inteligência editorial do Draft ao radar de empreendedores do Impact Hub.</p>
+          <p>Seleção proativa de vozes com potencial de liderança na geração de impacto positivo através da Creator Economy</p>
         </div>
         <div class="step">
           <div class="dot">02</div>
@@ -1610,50 +1597,10 @@
     <div class="mentors-inner">
       <span class="pill-label">Mentoria de elite</span>
       <h2 class="section-title">Vozes que abrem portas.</h2>
-      <p class="section-lede">Especialistas de extrema notoriedade que produzem conteúdo de alcance e profundidade — e emprestam sua audiência para impulsionar os novos Hero Creators.</p>
-      <div class="mentors-grid">
-        <div class="mentor-card">
-          <div class="mentor-photo"><div class="initials">GM</div></div>
-          <div class="mentor-meta">
-            <div class="mentor-row"><span class="name">Giuliana Morrone</span><span class="role">Jornalista</span></div>
-            <ul class="mentor-tags"><li>Sustentabilidade</li><li>ESG</li><li>Economia Circular</li></ul>
-          </div>
-        </div>
-        <div class="mentor-card">
-          <div class="mentor-photo"><div class="initials">LZ</div></div>
-          <div class="mentor-meta">
-            <div class="mentor-row"><span class="name">Laila Zaid</span><span class="role">Atriz</span></div>
-            <ul class="mentor-tags"><li>Ativista</li><li>Consumo Consciente</li><li>Meio Ambiente</li></ul>
-          </div>
-        </div>
-        <div class="mentor-card">
-          <div class="mentor-photo"><div class="initials">RC</div></div>
-          <div class="mentor-meta">
-            <div class="mentor-row"><span class="name">Rodrigo V. Cunha</span><span class="role">Empreendedor</span></div>
-            <ul class="mentor-tags"><li>TEDx</li><li>Histórias</li><li>Sustentabilidade</li></ul>
-          </div>
-        </div>
-        <div class="mentor-card">
-          <div class="mentor-photo"><div class="initials">AS</div></div>
-          <div class="mentor-meta">
-            <div class="mentor-row"><span class="name">Andrea Schwarz</span><span class="role">Creator</span></div>
-            <ul class="mentor-tags"><li>Acessibilidade</li><li>Inclusão</li><li>iigual</li></ul>
-          </div>
-        </div>
-        <div class="mentor-card">
-          <div class="mentor-photo"><div class="initials">DJ</div></div>
-          <div class="mentor-meta">
-            <div class="mentor-row"><span class="name">Dani Junco</span><span class="role">Creator</span></div>
-            <ul class="mentor-tags"><li>Maternidade</li><li>Trabalho</li><li>B2Mamy</li></ul>
-          </div>
-        </div>
-        <div class="mentor-card">
-          <div class="mentor-photo"><div class="initials">RS</div></div>
-          <div class="mentor-meta">
-            <div class="mentor-row"><span class="name">Renê Silva</span><span class="role">Empreendedor</span></div>
-            <ul class="mentor-tags"><li>Forbes</li><li>Complexo do Alemão</li><li>Voz das Comunidades</li></ul>
-          </div>
-        </div>
+      <div class="mentors-text">
+        <p>— Vozes especialistas de extrema notoriedade, que produzem conteúdo de alcance e profundidade em suas áreas de atuação.</p>
+        <p>— Eles não entregam apenas teoria no programa, mas inspiram e abrem portas. Uma rede de suporte que acelera a curva de aprendizado e valida a autoridade dos participantes.</p>
+        <p>— O mentor atua como um "fiador" da qualidade, podendo criar colabs que emprestam sua audiência consolidada para impulsionar o novo Hero Creator com inspiração, rigor técnico, profundidade e articulação.</p>
       </div>
     </div>
   </section>
@@ -1662,7 +1609,7 @@
   <section class="partners-block" id="parceiros" data-screen-label="09 Parceiros">
     <div class="partners-inner">
       <span class="pill-label">Parceiros do projeto</span>
-      <h2 class="section-title">Uma aliança pelo impacto.</h2>
+      <h2 class="section-title">Uma co-construção pelo impacto.</h2>
       <div class="partners-grid">
         <div class="partner-card">
           <div>
@@ -1704,37 +1651,22 @@
   <section class="invest-block" id="investimento" data-screen-label="10 Investimento">
     <div class="invest-inner">
       <span class="pill-label">O investimento</span>
-      <h2 class="section-title">Quantos Hero Creators<br/>você pode apoiar?</h2>
-      <div class="invest-grid">
-        <div class="invest-card featured">
-          <span class="tag-top">Exclusivo</span>
-          <div class="plan">Financiador único</div>
-          <div class="price">R$ 600K <small>investimento total</small></div>
-          <ul>
-            <li>30 participantes no programa completo</li>
-            <li>Primeiros 6 meses de operação cobertos</li>
-            <li>Marca em destaque em todo o programa</li>
-            <li>Único financiador — exclusividade total</li>
-            <li>Associação direta aos Hero Creators formados</li>
-          </ul>
-          <div class="invest-cta">
-            <a href="#" class="cta-pill">Quero ser o patrocinador</a>
-          </div>
+      <h2 class="section-title">Quero apoiar<br/>os Criadores de Impacto.</h2>
+      <form class="contact-form" onsubmit="return false;">
+        <div class="form-field">
+          <label for="cf-nome">Nome</label>
+          <input type="text" id="cf-nome" name="nome" placeholder="Seu nome completo" autocomplete="name" />
         </div>
-        <div class="invest-card outline">
-          <div class="plan">Programa compartilhado</div>
-          <div class="price">R$ 200K <small>por cota</small></div>
-          <ul>
-            <li>30 participantes no programa completo</li>
-            <li>Primeiros 6 meses de operação cobertos</li>
-            <li>Marca em destaque por cota</li>
-            <li>Financiamento compartilhado</li>
-          </ul>
-          <div class="invest-cta">
-            <a href="#" class="cta-pill outline">Quero uma cota</a>
-          </div>
+        <div class="form-field">
+          <label for="cf-email">E-mail</label>
+          <input type="email" id="cf-email" name="email" placeholder="seu@email.com" autocomplete="email" />
         </div>
-      </div>
+        <div class="form-field">
+          <label for="cf-org">Organização</label>
+          <input type="text" id="cf-org" name="organizacao" placeholder="Empresa ou instituição" autocomplete="organization" />
+        </div>
+        <button type="submit" class="cta-pill">Quero apoiar o programa</button>
+      </form>
     </div>
   </section>
 
