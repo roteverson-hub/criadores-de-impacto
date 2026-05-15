@@ -1213,39 +1213,100 @@
 
     /* ---------------- CONTACT FORM ---------------- */
     .contact-form {
-      margin-top: 60px;
-      max-width: 640px;
+      margin-top: 56px;
+      max-width: 680px;
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      gap: 18px;
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
     }
     .form-field {
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 7px;
     }
     .form-field label {
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 700;
-      letter-spacing: 0.14em;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
       color: var(--ink-soft);
     }
-    .form-field input {
+    .form-field label .opt {
+      font-weight: 400;
+      opacity: 0.55;
+      letter-spacing: 0;
+      text-transform: none;
+      font-size: 10px;
+      margin-left: 4px;
+    }
+    .form-field input,
+    .form-field textarea {
       background: #fff;
       border: 1.5px solid var(--line);
       border-radius: 12px;
-      padding: 16px 20px;
+      padding: 15px 18px;
       font-family: 'Archivo', sans-serif;
-      font-size: 16px;
+      font-size: 15px;
       color: var(--ink);
       outline: none;
-      transition: border-color 0.2s ease;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
       width: 100%;
     }
-    .form-field input::placeholder { color: var(--ink-faint); }
-    .form-field input:focus { border-color: var(--ink); }
-    .contact-form .cta-pill { align-self: flex-start; margin-top: 8px; font-size: 14px; padding: 14px 28px; }
+    .form-field textarea {
+      resize: vertical;
+      min-height: 110px;
+      line-height: 1.55;
+    }
+    .form-field input::placeholder,
+    .form-field textarea::placeholder { color: var(--ink-faint); }
+    .form-field input:focus,
+    .form-field textarea:focus {
+      border-color: var(--ink);
+      box-shadow: 0 0 0 3px rgba(10,10,10,0.06);
+    }
+    .form-field input:invalid:not(:placeholder-shown),
+    .form-field textarea:invalid:not(:placeholder-shown) {
+      border-color: #e05252;
+    }
+    .contact-form .cta-pill {
+      align-self: flex-start;
+      margin-top: 6px;
+      font-size: 14px;
+      padding: 14px 30px;
+      transition: transform 0.2s ease, background 0.2s ease, opacity 0.2s;
+    }
+    .contact-form .cta-pill:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+    /* success / error states */
+    .form-feedback {
+      display: none;
+      padding: 16px 20px;
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 1.5;
+    }
+    .form-feedback.success {
+      background: rgba(194,229,56,0.25);
+      border: 1.5px solid var(--accent);
+      color: #3a5200;
+    }
+    .form-feedback.error {
+      background: rgba(224,82,82,0.08);
+      border: 1.5px solid #e05252;
+      color: #b33;
+    }
+    @media (max-width: 560px) {
+      .form-row { grid-template-columns: 1fr; }
+    }
 
     /* ---------------- ICONS (inline SVG helpers via .icon) ---------------- */
     .icn {
@@ -1677,20 +1738,53 @@
     <div class="invest-inner">
       <span class="pill-label">O investimento</span>
       <h2 class="section-title">Quero apoiar<br/>os Criadores de Impacto.</h2>
-      <form class="contact-form" onsubmit="return false;">
+      <form class="contact-form" id="form-apoio" novalidate>
+        <!-- row 1: nome (full width) -->
         <div class="form-field">
           <label for="cf-nome">Nome</label>
-          <input type="text" id="cf-nome" name="nome" placeholder="Seu nome completo" autocomplete="name" />
+          <input type="text" id="cf-nome" name="nome" placeholder="Seu nome completo"
+                 autocomplete="name" required />
         </div>
+        <!-- row 2: e-mail + telefone -->
+        <div class="form-row">
+          <div class="form-field">
+            <label for="cf-email">E-mail</label>
+            <input type="email" id="cf-email" name="email" placeholder="seu@email.com"
+                   autocomplete="email" required />
+          </div>
+          <div class="form-field">
+            <label for="cf-tel">Telefone</label>
+            <input type="tel" id="cf-tel" name="telefone" placeholder="(11) 99999-9999"
+                   autocomplete="tel" required />
+          </div>
+        </div>
+        <!-- row 3: organização + cargo -->
+        <div class="form-row">
+          <div class="form-field">
+            <label for="cf-org">Organização</label>
+            <input type="text" id="cf-org" name="organizacao" placeholder="Empresa ou instituição"
+                   autocomplete="organization" required />
+          </div>
+          <div class="form-field">
+            <label for="cf-cargo">Cargo</label>
+            <input type="text" id="cf-cargo" name="cargo" placeholder="Seu cargo atual"
+                   autocomplete="organization-title" required />
+          </div>
+        </div>
+        <!-- row 4: mensagem (opcional) -->
         <div class="form-field">
-          <label for="cf-email">E-mail</label>
-          <input type="email" id="cf-email" name="email" placeholder="seu@email.com" autocomplete="email" />
+          <label for="cf-msg">Mensagem <span class="opt">(opcional)</span></label>
+          <textarea id="cf-msg" name="mensagem"
+                    placeholder="Conte um pouco sobre o interesse da sua organização…"></textarea>
         </div>
-        <div class="form-field">
-          <label for="cf-org">Organização</label>
-          <input type="text" id="cf-org" name="organizacao" placeholder="Empresa ou instituição" autocomplete="organization" />
+        <!-- feedback (hidden by default) -->
+        <div class="form-feedback success" id="form-success" role="alert">
+          ✓ Mensagem enviada! Entraremos em contato em breve.
         </div>
-        <button type="submit" class="cta-pill">Quero apoiar o programa</button>
+        <div class="form-feedback error" id="form-error" role="alert">
+          Ocorreu um erro ao enviar. Tente novamente ou escreva para contato@criadoresdeimpacto.com
+        </div>
+        <button type="submit" class="cta-pill" id="form-submit">Quero apoiar o programa</button>
       </form>
     </div>
   </section>
@@ -1935,6 +2029,108 @@
       statNums.forEach(el => numIO.observe(el));
     }
   })();
+
+  // ================================================================
+  // FORMULÁRIO — Integração RD Station
+  // ================================================================
+  // PASSO PARA A EQUIPE TÉCNICA:
+  //   1. Acesse sua conta RD Station
+  //   2. Vá em Configurações → Conta → Token da API
+  //   3. Copie o Token Público e substitua a string 'SEU_TOKEN_AQUI' abaixo
+  //   4. Salve e faça deploy. O formulário passará a registrar conversões.
+  // ================================================================
+  (function () {
+    var RDS_TOKEN = 'SEU_TOKEN_AQUI';          // ← substituir pelo token real
+    var RDS_IDENTIFIER = 'form-criadores-de-impacto'; // nome da conversão no RD Station
+
+    var form    = document.getElementById('form-apoio');
+    var btnEl   = document.getElementById('form-submit');
+    var successEl = document.getElementById('form-success');
+    var errorEl   = document.getElementById('form-error');
+
+    if (!form) return;
+
+    // ---- telefone mask (XX) XXXXX-XXXX ----
+    var telInput = document.getElementById('cf-tel');
+    if (telInput) {
+      telInput.addEventListener('input', function () {
+        var v = this.value.replace(/\D/g, '').slice(0, 11);
+        if (v.length > 2)  v = '(' + v.slice(0,2) + ') ' + v.slice(2);
+        if (v.length > 10) v = v.slice(0,10) + '-' + v.slice(10);
+        this.value = v;
+      });
+    }
+
+    // ---- validation helper ----
+    function validateForm() {
+      var ok = true;
+      form.querySelectorAll('[required]').forEach(function (el) {
+        if (!el.value.trim()) ok = false;
+        if (el.type === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(el.value)) ok = false;
+      });
+      return ok;
+    }
+
+    // ---- submit ----
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      successEl.style.display = 'none';
+      errorEl.style.display   = 'none';
+
+      if (!validateForm()) {
+        form.querySelectorAll('[required]').forEach(function (el) {
+          el.reportValidity && el.reportValidity();
+        });
+        return;
+      }
+
+      btnEl.disabled    = true;
+      btnEl.textContent = 'Enviando…';
+
+      var payload = {
+        identificador : RDS_IDENTIFIER,
+        nome          : document.getElementById('cf-nome').value.trim(),
+        email         : document.getElementById('cf-email').value.trim(),
+        telefone      : document.getElementById('cf-tel').value.trim(),
+        empresa       : document.getElementById('cf-org').value.trim(),
+        cargo         : document.getElementById('cf-cargo').value.trim(),
+        cf_mensagem   : document.getElementById('cf-msg').value.trim()
+      };
+
+      // Se o token ainda não foi configurado, apenas exibe sucesso local (dev mode)
+      if (RDS_TOKEN === 'SEU_TOKEN_AQUI') {
+        console.warn('[Criadores de Impacto] Token RD Station não configurado. Dados capturados:', payload);
+        showSuccess();
+        return;
+      }
+
+      fetch('https://www.rdstation.com.br/api/1.3/' + RDS_TOKEN + '/conversions', {
+        method : 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body   : JSON.stringify(payload)
+      })
+      .then(function (res) {
+        if (res.ok || res.status === 200) { showSuccess(); }
+        else { throw new Error('HTTP ' + res.status); }
+      })
+      .catch(function (err) {
+        console.error('[RD Station] Erro:', err);
+        btnEl.disabled    = false;
+        btnEl.textContent = 'Quero apoiar o programa';
+        errorEl.style.display = 'block';
+      });
+    });
+
+    function showSuccess() {
+      form.querySelectorAll('input, textarea, button').forEach(function (el) {
+        el.style.display = 'none';
+      });
+      form.querySelectorAll('.form-field, .form-row').forEach(function (el) {
+        el.style.display = 'none';
+      });
+      successEl.style.display = 'block';
+    }
+  }());
   </script>
 
 </body>
