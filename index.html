@@ -1173,17 +1173,26 @@
       gap: 12px;
     }
 
-    /* ---------------- HEART LOGO OVERLAY ---------------- */
-    .heart-logo-overlay {
+    /* ---------------- HEART SCREEN OVERLAY ---------------- */
+    .heart-screen {
       position: absolute;
       z-index: 3;
-      width: 52%;
+      width: 50%;
       left: 50%;
-      top: 56%;
+      top: 57%;
       transform: translate(-50%, -50%);
       pointer-events: none;
-      opacity: 0.92;
-      filter: drop-shadow(0 2px 12px rgba(0,0,0,0.18));
+      background: #111110;
+      border-radius: 3px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 7% 6%;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.35);
+    }
+    .heart-screen img {
+      width: 100%;
+      display: block;
     }
 
     /* ---------------- HEARTBEAT ANIMATION ---------------- */
@@ -1196,11 +1205,8 @@
       100% { transform: scale(1)    rotate(-0.4deg); }
     }
     .hero-art:hover img.heart-img {
-      animation: heartbeat 0.75s ease-in-out infinite !important;
+      animation: heartbeat 1.5s ease-in-out infinite !important;
       cursor: pointer;
-    }
-    .hero-art:hover .heart-logo-overlay {
-      animation: none;
     }
 
     /* ---------------- ICONS (inline SVG helpers via .icon) ---------------- */
@@ -1395,7 +1401,9 @@
         <div class="ring" aria-hidden="true"></div>
         <div class="glow" aria-hidden="true"></div>
         <img src="assets/heart-laptop.png" alt="Coração de musgo e flores com MacBook exibindo o logo Criadores de Impacto" class="heart-img" />
-        <img src="assets/logo-criadores.svg" alt="Criadores de Impacto" class="heart-logo-overlay" aria-hidden="true" />
+        <div class="heart-screen" aria-hidden="true">
+          <img src="assets/logo-criadores.svg" alt="" />
+        </div>
         <div class="petals" aria-hidden="true"></div>
       </div>
       <div class="hero-side right">
