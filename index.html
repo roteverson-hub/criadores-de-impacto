@@ -1211,101 +1211,130 @@
       padding-left: 0;
     }
 
-    /* ---------------- CONTACT FORM ---------------- */
-    .contact-form {
+    /* ---------------- RD STATION FORM EMBED ---------------- */
+    /* Container wrapper */
+    .rds-form-wrap {
       margin-top: 56px;
       max-width: 680px;
-      display: flex;
-      flex-direction: column;
-      gap: 18px;
     }
-    .form-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 18px;
+
+    /* Reset / base — força fonte e box-model */
+    .rds-form-wrap * {
+      font-family: 'Archivo', sans-serif !important;
+      box-sizing: border-box !important;
     }
-    .form-field {
-      display: flex;
-      flex-direction: column;
-      gap: 7px;
+
+    /* Remove qualquer borda/sombra de container que o RD injeta */
+    .rds-form-wrap .bricks-form,
+    .rds-form-wrap form,
+    .rds-form-wrap fieldset {
+      border: none !important;
+      box-shadow: none !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      background: transparent !important;
+      max-width: 100% !important;
     }
-    .form-field label {
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--ink-soft);
+
+    /* Espaçamento entre grupos de campo */
+    .rds-form-wrap .bricks--fieldset {
+      margin-bottom: 18px !important;
     }
-    .form-field label .opt {
-      font-weight: 400;
-      opacity: 0.55;
-      letter-spacing: 0;
-      text-transform: none;
-      font-size: 10px;
-      margin-left: 4px;
+    .rds-form-wrap .bricks--fieldset:last-child {
+      margin-bottom: 0 !important;
     }
-    .form-field input,
-    .form-field textarea {
-      background: #fff;
-      border: 1.5px solid var(--line);
-      border-radius: 12px;
-      padding: 15px 18px;
-      font-family: 'Archivo', sans-serif;
-      font-size: 15px;
-      color: var(--ink);
-      outline: none;
-      transition: border-color 0.2s ease, box-shadow 0.2s ease;
-      width: 100%;
+
+    /* Labels */
+    .rds-form-wrap label,
+    .rds-form-wrap .bricks--label {
+      display: block !important;
+      font-size: 11px !important;
+      font-weight: 700 !important;
+      letter-spacing: 0.16em !important;
+      text-transform: uppercase !important;
+      color: rgba(10,10,10,0.65) !important;
+      margin-bottom: 7px !important;
     }
-    .form-field textarea {
-      resize: vertical;
-      min-height: 110px;
-      line-height: 1.55;
+
+    /* Inputs, selects, textareas */
+    .rds-form-wrap input[type="text"],
+    .rds-form-wrap input[type="email"],
+    .rds-form-wrap input[type="tel"],
+    .rds-form-wrap input[type="number"],
+    .rds-form-wrap input[type="url"],
+    .rds-form-wrap textarea,
+    .rds-form-wrap select,
+    .rds-form-wrap .bricks--field--input {
+      width: 100% !important;
+      background: #fff !important;
+      border: 1.5px solid rgba(10,10,10,0.12) !important;
+      border-radius: 12px !important;
+      padding: 15px 18px !important;
+      font-size: 15px !important;
+      color: #0A0A0A !important;
+      box-shadow: none !important;
+      outline: none !important;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease !important;
+      appearance: none !important;
+      -webkit-appearance: none !important;
     }
-    .form-field input::placeholder,
-    .form-field textarea::placeholder { color: var(--ink-faint); }
-    .form-field input:focus,
-    .form-field textarea:focus {
-      border-color: var(--ink);
-      box-shadow: 0 0 0 3px rgba(10,10,10,0.06);
+    .rds-form-wrap input::placeholder,
+    .rds-form-wrap textarea::placeholder {
+      color: rgba(10,10,10,0.35) !important;
     }
-    .form-field input:invalid:not(:placeholder-shown),
-    .form-field textarea:invalid:not(:placeholder-shown) {
-      border-color: #e05252;
+    .rds-form-wrap input:focus,
+    .rds-form-wrap textarea:focus,
+    .rds-form-wrap select:focus {
+      border-color: #0A0A0A !important;
+      box-shadow: 0 0 0 3px rgba(10,10,10,0.06) !important;
     }
-    .contact-form .cta-pill {
-      align-self: flex-start;
-      margin-top: 6px;
-      font-size: 14px;
-      padding: 14px 30px;
-      transition: transform 0.2s ease, background 0.2s ease, opacity 0.2s;
+    .rds-form-wrap textarea {
+      resize: vertical !important;
+      min-height: 110px !important;
+      line-height: 1.55 !important;
     }
-    .contact-form .cta-pill:disabled {
-      opacity: 0.6;
-      cursor: not-allowed;
-      transform: none;
+
+    /* Botão de envio */
+    .rds-form-wrap button[type="submit"],
+    .rds-form-wrap input[type="submit"],
+    .rds-form-wrap .bricks--btn,
+    .rds-form-wrap .bricks--component-button {
+      display: inline-flex !important;
+      align-items: center !important;
+      gap: 8px !important;
+      background: #C2E538 !important;
+      color: #0A0A0A !important;
+      border: none !important;
+      border-radius: 100px !important;
+      padding: 14px 30px !important;
+      font-weight: 700 !important;
+      font-size: 13px !important;
+      letter-spacing: 0.02em !important;
+      text-transform: uppercase !important;
+      cursor: pointer !important;
+      box-shadow: none !important;
+      transition: background 0.2s ease, transform 0.2s ease !important;
+      width: auto !important;
     }
-    /* success / error states */
-    .form-feedback {
-      display: none;
-      padding: 16px 20px;
-      border-radius: 12px;
-      font-size: 14px;
-      font-weight: 600;
-      line-height: 1.5;
+    .rds-form-wrap button[type="submit"]:hover,
+    .rds-form-wrap input[type="submit"]:hover,
+    .rds-form-wrap .bricks--btn:hover {
+      background: #A8CC22 !important;
+      transform: translateY(-1px) !important;
     }
-    .form-feedback.success {
-      background: rgba(194,229,56,0.25);
-      border: 1.5px solid var(--accent);
-      color: #3a5200;
+
+    /* Mensagem de sucesso / erro que o RD injeta */
+    .rds-form-wrap .bricks--component-text p,
+    .rds-form-wrap .conversion-success,
+    .rds-form-wrap [class*="success"],
+    .rds-form-wrap [class*="error"] {
+      font-size: 15px !important;
+      line-height: 1.6 !important;
     }
-    .form-feedback.error {
-      background: rgba(224,82,82,0.08);
-      border: 1.5px solid #e05252;
-      color: #b33;
-    }
-    @media (max-width: 560px) {
-      .form-row { grid-template-columns: 1fr; }
+
+    /* Remove qualquer título/header que o RD injeta acima do form */
+    .rds-form-wrap .bricks--component-text:first-child {
+      display: none !important;
     }
 
     /* ---------------- ICONS (inline SVG helpers via .icon) ---------------- */
@@ -1738,54 +1767,13 @@
     <div class="invest-inner">
       <span class="pill-label">O investimento</span>
       <h2 class="section-title">Quero apoiar<br/>os Criadores de Impacto.</h2>
-      <form class="contact-form" id="form-apoio" novalidate>
-        <!-- row 1: nome (full width) -->
-        <div class="form-field">
-          <label for="cf-nome">Nome</label>
-          <input type="text" id="cf-nome" name="nome" placeholder="Seu nome completo"
-                 autocomplete="name" required />
-        </div>
-        <!-- row 2: e-mail + telefone -->
-        <div class="form-row">
-          <div class="form-field">
-            <label for="cf-email">E-mail</label>
-            <input type="email" id="cf-email" name="email" placeholder="seu@email.com"
-                   autocomplete="email" required />
-          </div>
-          <div class="form-field">
-            <label for="cf-tel">Telefone</label>
-            <input type="tel" id="cf-tel" name="telefone" placeholder="(11) 99999-9999"
-                   autocomplete="tel" required />
-          </div>
-        </div>
-        <!-- row 3: organização + cargo -->
-        <div class="form-row">
-          <div class="form-field">
-            <label for="cf-org">Organização</label>
-            <input type="text" id="cf-org" name="organizacao" placeholder="Empresa ou instituição"
-                   autocomplete="organization" required />
-          </div>
-          <div class="form-field">
-            <label for="cf-cargo">Cargo</label>
-            <input type="text" id="cf-cargo" name="cargo" placeholder="Seu cargo atual"
-                   autocomplete="organization-title" required />
-          </div>
-        </div>
-        <!-- row 4: mensagem (opcional) -->
-        <div class="form-field">
-          <label for="cf-msg">Mensagem <span class="opt">(opcional)</span></label>
-          <textarea id="cf-msg" name="mensagem"
-                    placeholder="Conte um pouco sobre o interesse da sua organização…"></textarea>
-        </div>
-        <!-- feedback (hidden by default) -->
-        <div class="form-feedback success" id="form-success" role="alert">
-          ✓ Mensagem enviada! Entraremos em contato em breve.
-        </div>
-        <div class="form-feedback error" id="form-error" role="alert">
-          Ocorreu um erro ao enviar. Tente novamente ou escreva para contato@criadoresdeimpacto.com
-        </div>
-        <button type="submit" class="cta-pill" id="form-submit">Quero apoiar o programa</button>
-      </form>
+      <div class="rds-form-wrap">
+        <div role="main" id="quero-apoiar-os-criadores-de-impacto-77f3b0fba5b2215f4d52"></div>
+      </div>
+      <script type="text/javascript" src="https://d335luupugsy2.cloudfront.net/js/rdstation-forms/stable/rdstation-forms.min.js"></script>
+      <script type="text/javascript">
+        new RDStationForms('quero-apoiar-os-criadores-de-impacto-77f3b0fba5b2215f4d52', 'UA-54346961-1').createForm();
+      </script>
     </div>
   </section>
 
@@ -2030,104 +2018,6 @@
     }
   })();
 
-  // ================================================================
-  // FORMULÁRIO — Integração RD Station API 2.0 (API Key)
-  // API Key: gerada em Integrações → App Store → Chaves de API
-  // ================================================================
-  (function () {
-    var RDS_API_KEY    = 'GGmeCqJyvzWSUkuRIcsElgcLVChXHhYKNUhL';
-    var RDS_IDENTIFIER = 'form-criadores-de-impacto';
-    var RDS_ENDPOINT   = 'https://api.rd.services/platform/events';
-
-    var form      = document.getElementById('form-apoio');
-    var btnEl     = document.getElementById('form-submit');
-    var successEl = document.getElementById('form-success');
-    var errorEl   = document.getElementById('form-error');
-
-    if (!form) return;
-
-    // ---- máscara de telefone (XX) XXXXX-XXXX ----
-    var telInput = document.getElementById('cf-tel');
-    if (telInput) {
-      telInput.addEventListener('input', function () {
-        var v = this.value.replace(/\D/g, '').slice(0, 11);
-        if (v.length > 2)  v = '(' + v.slice(0,2) + ') ' + v.slice(2);
-        if (v.length > 10) v = v.slice(0,10) + '-' + v.slice(10);
-        this.value = v;
-      });
-    }
-
-    // ---- validação ----
-    function validateForm() {
-      var ok = true;
-      form.querySelectorAll('[required]').forEach(function (el) {
-        if (!el.value.trim()) ok = false;
-        if (el.type === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(el.value)) ok = false;
-      });
-      return ok;
-    }
-
-    // ---- submit ----
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      successEl.style.display = 'none';
-      errorEl.style.display   = 'none';
-
-      if (!validateForm()) {
-        form.querySelectorAll('[required]').forEach(function (el) {
-          el.reportValidity && el.reportValidity();
-        });
-        return;
-      }
-
-      btnEl.disabled    = true;
-      btnEl.textContent = 'Enviando…';
-
-      // payload no formato RD Station API 2.0
-      var body = {
-        event_type   : 'CONVERSION',
-        event_family : 'CDP',
-        payload      : {
-          conversion_identifier : RDS_IDENTIFIER,
-          email                 : document.getElementById('cf-email').value.trim(),
-          name                  : document.getElementById('cf-nome').value.trim(),
-          personal_phone        : document.getElementById('cf-tel').value.trim(),
-          company_name          : document.getElementById('cf-org').value.trim(),
-          job_title             : document.getElementById('cf-cargo').value.trim(),
-          cf_mensagem           : document.getElementById('cf-msg').value.trim()
-        }
-      };
-
-      fetch(RDS_ENDPOINT, {
-        method  : 'POST',
-        headers : {
-          'Content-Type'  : 'application/json',
-          'Authorization' : 'Bearer ' + RDS_API_KEY
-        },
-        body: JSON.stringify(body)
-      })
-      .then(function (res) {
-        if (res.ok) { showSuccess(); }
-        else { return res.text().then(function(t){ throw new Error('HTTP ' + res.status + ': ' + t); }); }
-      })
-      .catch(function (err) {
-        console.error('[RD Station] Erro:', err);
-        btnEl.disabled    = false;
-        btnEl.textContent = 'Quero apoiar o programa';
-        // mostra o erro técnico para diagnóstico — remover depois
-        errorEl.textContent = '[DEBUG] ' + (err && err.message ? err.message : String(err));
-        errorEl.style.display = 'block';
-      });
-    });
-
-    function showSuccess() {
-      form.querySelectorAll('.form-field, .form-row').forEach(function (el) {
-        el.style.display = 'none';
-      });
-      form.querySelector('button[type="submit"]').style.display = 'none';
-      successEl.style.display = 'block';
-    }
-  }());
   </script>
 
 </body>
